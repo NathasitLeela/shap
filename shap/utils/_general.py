@@ -155,9 +155,9 @@ def encode_array_if_needed(arr, dtype=np.float64):
     try:
         return arr.astype(dtype)
     except ValueError:
-        unique_values = np.unique(arr)
+        unique_values = np.unique(arr.astype(str))
         encoding_dict = {string: index for index, string in enumerate(unique_values)}
-        encoded_array = np.array([encoding_dict[string] for string in arr], dtype=dtype)
+        encoded_array = np.array([encoding_dict[str(string)] for string in arr], dtype=dtype)
         return encoded_array
 
 
